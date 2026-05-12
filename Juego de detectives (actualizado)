@@ -82,6 +82,20 @@ class Policia
     {
         return nombre + " [" + rango + "] - Especialidad: " + especialidad;
     }
+
+    public void mostrarInfo()
+    {
+        System.out.println("ID: " + id);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Género: " + genero);
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Dirección: " + direccion);
+        System.out.println("Número: " + numero);
+        System.out.println("Rango: " + rango);
+        System.out.println("Experiencia: " + experiencia);
+        System.out.println("Equipamiento: " + equipamiento);
+    }
 }
 
 // ACTOR FORENSE
@@ -128,7 +142,7 @@ class Forense
 
     public void generarInforme()
     {
-        System.out.println("-- INFORME FORENSE --");
+        System.out.println("INFORME FORENSE");
         System.out.println("Forense: " + nombre);
         System.out.println("Cadáver: " + nombreCadaver);
         System.out.println("Hora de autopsia: " + horaAutopsia);
@@ -138,6 +152,19 @@ class Forense
     public String obtenerInfo()
     {
         return nombre + " [Forense] - Especialidad: " + especialidad;
+    }
+
+    public void mostrarInfo()
+    {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Edad: " + edad);
+        System.out.println("Género: " + genero);
+        System.out.println("Especialidad: " + especialidad);
+        System.out.println("Experiencia: " + experiencia);
+        System.out.println("Cadáver: " + nombreCadaver);
+        System.out.println("Hora de autopsia: " + horaAutopsia);
+        System.out.println("Estado del cuerpo: " + estadoCuerpo);
+        System.out.println("Equipo de protección: " + equipoProteccion);
     }
 }
 
@@ -187,6 +214,57 @@ class Sospechoso
     }
 }
 
+// ACTOR ESPIA
+class Espia
+{
+    protected String nombreClave;
+    protected int reportesEnviados;
+    protected String destinoActual;
+
+    public Espia(String nombreClave, int reportesEnviados, String destinoActual)
+    {
+        this.nombreClave = nombreClave;
+        this.reportesEnviados = reportesEnviados;
+        this.destinoActual = destinoActual;
+    }
+
+    public void enviarReporte()
+    {
+        reportesEnviados++;
+        System.out.println("El agente envía el reporte número " + reportesEnviados + " hacia " + destinoActual + ".");
+    }
+}
+
+class Agente
+{
+    protected int id;
+    protected String nombre;
+    protected String agencia;
+    protected String rango;
+    protected String experiencia;
+    protected int edad;
+
+    public Agente(int id, String nombre, String agencia, String rango, String experiencia, int edad)
+    {
+        this.id = id;
+        this.nombre = nombre;
+        this.agencia = agencia;
+        this.rango = rango;
+        this.experiencia = experiencia;
+        this.edad = edad;
+    }
+
+    public void mostrarInfo()
+    {
+        System.out.println("ID: " + id);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Agencia: " + agencia);
+        System.out.println("Rango: " + rango);
+        System.out.println("Experiencia: " + experiencia);
+        System.out.println("Edad: " + edad);
+    }
+}
+
 public class CasoDetective
 {
     public static void main(String[] args)
@@ -233,19 +311,107 @@ public class CasoDetective
             System.out.println("Eres un detective con experiencia.");
         }
 
-        System.out.println("\nTu misión: resolver el caso HIDDEN.");
-        System.out.println("Necesitas al menos 3 pistas.");
+        System.out.println("\nRegistro del agente.");
+        System.out.print("ID del agente: ");
+        int agenteId = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Nombre del agente: ");
+        String agenteNombre = teclado.nextLine();
+        System.out.print("Agencia del agente: ");
+        String agenteAgencia = teclado.nextLine();
+        System.out.print("Rango del agente: ");
+        String agenteRango = teclado.nextLine();
+        System.out.print("Experiencia del agente: ");
+        String agenteExperiencia = teclado.nextLine();
+        System.out.print("Edad del agente: ");
+        int agenteEdad = teclado.nextInt();
+        teclado.nextLine();
+
+        Agente agenteAuxiliar = new Agente(agenteId, agenteNombre, agenteAgencia, agenteRango, agenteExperiencia, agenteEdad);
+        System.out.println("\nAgente registrado:");
+        agenteAuxiliar.mostrarInfo();
+
+        System.out.println("\nRegistro del policía.");
+        System.out.print("ID del policía: ");
+        int policiaId = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Nombre del policía: ");
+        String policiaNombre = teclado.nextLine();
+        System.out.print("Edad del policía: ");
+        int policiaEdad = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Género del policía: ");
+        String policiaGenero = teclado.nextLine();
+        System.out.print("Especialidad del policía: ");
+        String policiaEspecialidad = teclado.nextLine();
+        System.out.print("Dirección del policía: ");
+        String policiaDireccion = teclado.nextLine();
+        System.out.print("Número del policía: ");
+        int policiaNumero = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Rango del policía: ");
+        String policiaRango = teclado.nextLine();
+        System.out.print("Experiencia del policía: ");
+        String policiaExperiencia = teclado.nextLine();
+        System.out.print("Equipamiento del policía: ");
+        String policiaEquipamiento = teclado.nextLine();
 
         Policia agente = new Policia(
-            101, nombre, edad, "N/D", "Investigación Criminal",
-            "Calle Falsa 123", 555001, "Detective", "5 años", "Pistola, radio"
+            policiaId, policiaNombre, policiaEdad, policiaGenero,
+            policiaEspecialidad, policiaDireccion, policiaNumero,
+            policiaRango, policiaExperiencia, policiaEquipamiento
         );
+        System.out.println("\nPolicía registrado:");
+        agente.mostrarInfo();
+
+        System.out.println("\nRegistro del forense.");
+        System.out.print("Nombre del forense: ");
+        String forenseNombre = teclado.nextLine();
+        System.out.print("Edad del forense: ");
+        int forenseEdad = teclado.nextInt();
+        teclado.nextLine();
+        System.out.print("Experiencia del forense: ");
+        String forenseExperiencia = teclado.nextLine();
+        System.out.print("Especialidad del forense: ");
+        String forenseEspecialidad = teclado.nextLine();
+        System.out.print("Género del forense: ");
+        String forenseGenero = teclado.nextLine();
+        System.out.print("Nombre del cadáver: ");
+        String nombreCadaver = teclado.nextLine();
+        System.out.print("Hora de autopsia: ");
+        String horaAutopsia = teclado.nextLine();
+        System.out.print("Estado del cuerpo: ");
+        String estadoCuerpo = teclado.nextLine();
+        System.out.print("Equipo de protección: ");
+        String equipoProteccion = teclado.nextLine();
 
         Forense perito = new Forense(
-            "Dr. Herrera", 45, "20 años", "Medicina Forense",
-            "Masculino", "Víctima desconocida", "03:00 AM",
-            "Signos de envenenamiento", "Traje completo de protección"
+            forenseNombre, forenseEdad, forenseExperiencia,
+            forenseEspecialidad, forenseGenero, nombreCadaver,
+            horaAutopsia, estadoCuerpo, equipoProteccion
         );
+        System.out.println("\nForense registrado:");
+        perito.mostrarInfo();
+
+        System.out.println("\nRegistro del espía.");
+        Espia espia = new Espia("Tinta Invisible", 0, "Estación Central");
+        espia.enviarReporte();
+
+        System.out.println("\nExpediente nuevo:");
+        System.out.print("Nombre en clave: ");
+        String nombreClave = teclado.nextLine();
+        System.out.print("Destino actual: ");
+        String destinoActual = teclado.nextLine();
+        System.out.print("Reportes enviados iniciales: ");
+        int reportesEnviados = teclado.nextInt();
+        teclado.nextLine();
+
+        Espia nuevoAgente = new Espia(nombreClave, reportesEnviados, destinoActual);
+        System.out.println("\nInformación registrada:");
+        nuevoAgente.enviarReporte();
+
+        System.out.println("\nTu misión: resolver el caso HIDDEN.");
+        System.out.println("Necesitas al menos 3 pistas.");
 
         Sospechoso[] sospechosos = {
             new Sospechoso("Victoria Mendoza", 34, "1001234567", "Femenino",
@@ -276,7 +442,7 @@ public class CasoDetective
         // MENÚ
         while (!casoResuelto)
         {
-            System.out.println("\n--- MENÚ DEL DETECTIVE ---");
+            System.out.println("\nMENÚ DEL DETECTIVE");
             System.out.println("1. Buscar pistas");
             System.out.println("2. Interrogar sospechosos");
             System.out.println("3. Consultar informe forense");
@@ -334,7 +500,7 @@ public class CasoDetective
                     break;
 
                 case 4:
-                    System.out.println("\n--- PERFILES DE SOSPECHOSOS ---");
+                    System.out.println("\nPERFILES DE SOSPECHOSOS");
                     for (Sospechoso sp : sospechosos)
                     {
                         System.out.println(sp.obtenerInfo());
@@ -347,17 +513,17 @@ public class CasoDetective
 
                     if (pistas >= 3)
                     {
-                        System.out.println("¡Tienes suficientes pistas!");
+                        System.out.println("Tienes suficientes pistas");
                         System.out.println("El culpable es: " + sospechosos[1].nombre);
                         System.out.println("Conexión: " + sospechosos[1].conexion);
                         System.out.println("Coartada falsa: " + sospechosos[1].coartada);
-                        System.out.println("¡CASO RESUELTO, detective " + nombre + "!");
+                        System.out.println("CASO RESUELTO, detective " + nombre + "!");
                         casoResuelto = true;
                     }
                     else if (pistas >= 1)
                     {
                         System.out.println("Tienes " + pistas + " pista(s). Necesitas 3.");
-                        System.out.println("¡Sigue investigando!");
+                        System.out.println("Sigue investigando");
                     }
                     else
                     {
@@ -371,7 +537,7 @@ public class CasoDetective
                     break;
             }
         }
-
+ 
         System.out.println("\nGracias por jugar, " + nombre + ". Caso cerrado.");
         teclado.close();
     }
